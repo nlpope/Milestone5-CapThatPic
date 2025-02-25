@@ -6,6 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		40C5BADD2D6E58F800E7AA91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD22D6E58F800E7AA91 /* Assets.xcassets */; };
+		40C5BADF2D6E58F800E7AA91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD52D6E58F800E7AA91 /* LaunchScreen.storyboard */; };
+		40C5BAE02D6E58F800E7AA91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD72D6E58F800E7AA91 /* Main.storyboard */; };
+		40C5BAE12D6E58F800E7AA91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAD12D6E58F800E7AA91 /* AppDelegate.swift */; };
+		40C5BAE22D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAD82D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld */; };
+		40C5BAE32D6E58F800E7AA91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAD92D6E58F800E7AA91 /* SceneDelegate.swift */; };
+		40C5BAE42D6E58F800E7AA91 /* HomeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BADA2D6E58F800E7AA91 /* HomeTableVC.swift */; };
+		40C5BAE82D6E5A5A00E7AA91 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		40C5BAB42D6E588900E7AA91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,27 +38,18 @@
 		40C5BA9A2D6E588100E7AA91 /* Milestone5-CapThatPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milestone5-CapThatPic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C5BAB32D6E588900E7AA91 /* Milestone5-CapThatPicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Milestone5-CapThatPicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C5BABD2D6E588900E7AA91 /* Milestone5-CapThatPicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Milestone5-CapThatPicUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C5BAD12D6E58F800E7AA91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		40C5BAD22D6E58F800E7AA91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40C5BAD32D6E58F800E7AA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40C5BAD42D6E58F800E7AA91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		40C5BAD62D6E58F800E7AA91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		40C5BAD92D6E58F800E7AA91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		40C5BADA2D6E58F800E7AA91 /* HomeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableVC.swift; sourceTree = "<group>"; };
+		40C5BADC2D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Milestone5_CapThatPic.xcdatamodel; sourceTree = "<group>"; };
+		40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		40C5BAC52D6E588900E7AA91 /* Exceptions for "Milestone5-CapThatPic" folder in "Milestone5-CapThatPic" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 40C5BA992D6E588100E7AA91 /* Milestone5-CapThatPic */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		40C5BA9C2D6E588100E7AA91 /* Milestone5-CapThatPic */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				40C5BAC52D6E588900E7AA91 /* Exceptions for "Milestone5-CapThatPic" folder in "Milestone5-CapThatPic" target */,
-			);
-			path = "Milestone5-CapThatPic";
-			sourceTree = "<group>";
-		};
 		40C5BAB62D6E588900E7AA91 /* Milestone5-CapThatPicTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Milestone5-CapThatPicTests";
@@ -88,7 +90,7 @@
 		40C5BA912D6E588100E7AA91 = {
 			isa = PBXGroup;
 			children = (
-				40C5BA9C2D6E588100E7AA91 /* Milestone5-CapThatPic */,
+				40C5BADB2D6E58F800E7AA91 /* Milestone5-CapThatPic */,
 				40C5BAB62D6E588900E7AA91 /* Milestone5-CapThatPicTests */,
 				40C5BAC02D6E588900E7AA91 /* Milestone5-CapThatPicUITests */,
 				40C5BA9B2D6E588100E7AA91 /* Products */,
@@ -105,6 +107,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		40C5BADB2D6E58F800E7AA91 /* Milestone5-CapThatPic */ = {
+			isa = PBXGroup;
+			children = (
+				40C5BAE62D6E599E00E7AA91 /* Screens */,
+				40C5BAE52D6E590D00E7AA91 /* Support */,
+				40C5BAD32D6E58F800E7AA91 /* Info.plist */,
+			);
+			path = "Milestone5-CapThatPic";
+			sourceTree = "<group>";
+		};
+		40C5BAE52D6E590D00E7AA91 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				40C5BAD12D6E58F800E7AA91 /* AppDelegate.swift */,
+				40C5BAD92D6E58F800E7AA91 /* SceneDelegate.swift */,
+				40C5BAD72D6E58F800E7AA91 /* Main.storyboard */,
+				40C5BAD52D6E58F800E7AA91 /* LaunchScreen.storyboard */,
+				40C5BAD22D6E58F800E7AA91 /* Assets.xcassets */,
+				40C5BAD82D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		40C5BAE62D6E599E00E7AA91 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				40C5BADA2D6E58F800E7AA91 /* HomeTableVC.swift */,
+				40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +153,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				40C5BA9C2D6E588100E7AA91 /* Milestone5-CapThatPic */,
 			);
 			name = "Milestone5-CapThatPic";
 			packageProductDependencies = (
@@ -225,6 +256,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40C5BADD2D6E58F800E7AA91 /* Assets.xcassets in Resources */,
+				40C5BADF2D6E58F800E7AA91 /* LaunchScreen.storyboard in Resources */,
+				40C5BAE02D6E58F800E7AA91 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40C5BAE82D6E5A5A00E7AA91 /* DetailVC.swift in Sources */,
+				40C5BAE12D6E58F800E7AA91 /* AppDelegate.swift in Sources */,
+				40C5BAE22D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld in Sources */,
+				40C5BAE32D6E58F800E7AA91 /* SceneDelegate.swift in Sources */,
+				40C5BAE42D6E58F800E7AA91 /* HomeTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +319,25 @@
 			targetProxy = 40C5BABE2D6E588900E7AA91 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		40C5BAD52D6E58F800E7AA91 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40C5BAD42D6E58F800E7AA91 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		40C5BAD72D6E58F800E7AA91 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				40C5BAD62D6E58F800E7AA91 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		40C5BAC72D6E588900E7AA91 /* Debug */ = {
@@ -569,6 +627,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		40C5BAD82D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				40C5BADC2D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodel */,
+			);
+			currentVersion = 40C5BADC2D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodel */;
+			path = Milestone5_CapThatPic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 40C5BA922D6E588100E7AA91 /* Project object */;
 }
