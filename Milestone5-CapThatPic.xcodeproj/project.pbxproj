@@ -15,6 +15,7 @@
 		40C5BAE32D6E58F800E7AA91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAD92D6E58F800E7AA91 /* SceneDelegate.swift */; };
 		40C5BAE42D6E58F800E7AA91 /* HomeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BADA2D6E58F800E7AA91 /* HomeTableVC.swift */; };
 		40C5BAE82D6E5A5A00E7AA91 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */; };
+		40C5BAEC2D6E5E3800E7AA91 /* CaptionedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C5BAEB2D6E5E3800E7AA91 /* CaptionedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		40C5BADA2D6E58F800E7AA91 /* HomeTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableVC.swift; sourceTree = "<group>"; };
 		40C5BADC2D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Milestone5_CapThatPic.xcdatamodel; sourceTree = "<group>"; };
 		40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		40C5BAEB2D6E5E3800E7AA91 /* CaptionedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -110,6 +112,7 @@
 		40C5BADB2D6E58F800E7AA91 /* Milestone5-CapThatPic */ = {
 			isa = PBXGroup;
 			children = (
+				40C5BAE92D6E5E0900E7AA91 /* Models */,
 				40C5BAE62D6E599E00E7AA91 /* Screens */,
 				40C5BAE52D6E590D00E7AA91 /* Support */,
 				40C5BAD32D6E58F800E7AA91 /* Info.plist */,
@@ -137,6 +140,14 @@
 				40C5BAE72D6E5A5A00E7AA91 /* DetailVC.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		40C5BAE92D6E5E0900E7AA91 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40C5BAEB2D6E5E3800E7AA91 /* CaptionedImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +299,7 @@
 				40C5BAE22D6E58F800E7AA91 /* Milestone5_CapThatPic.xcdatamodeld in Sources */,
 				40C5BAE32D6E58F800E7AA91 /* SceneDelegate.swift in Sources */,
 				40C5BAE42D6E58F800E7AA91 /* HomeTableVC.swift in Sources */,
+				40C5BAEC2D6E5E3800E7AA91 /* CaptionedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
