@@ -7,8 +7,10 @@
 
 import UIKit
 
-class HomeTableVC: UIViewController, UIImagePickerControllerDelegate
+class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate
 {
+    var photoArray = [CaptionedImage]()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -16,5 +18,19 @@ class HomeTableVC: UIViewController, UIImagePickerControllerDelegate
     }
 
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return photoArray.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        return UITableViewCell()
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        print("row selected")
+    }
 }
-
