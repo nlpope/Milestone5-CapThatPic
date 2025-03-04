@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GZM-m7-rX0" customClass="ImageCell" customModule="Milestone5_CapThatPic" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CapCell" id="GZM-m7-rX0" customClass="CaptionedImageCell" customModule="Milestone5_CapThatPic" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GZM-m7-rX0" id="gcQ-3x-9vp">
@@ -55,6 +55,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="caption" destination="Mzm-DV-Kpc" id="9qj-F6-QTd"/>
+                                    <outlet property="imageView" destination="SRq-jv-sJR" id="3rT-i3-N90"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

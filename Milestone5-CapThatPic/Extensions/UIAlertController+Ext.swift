@@ -1,5 +1,5 @@
 //
-//  HomeTableVC+Ext.swift
+//  UIAlertController+Ext.swift
 //  Milestone5-CapThatPic
 //
 //  Created by Noah Pope on 3/4/25.
@@ -11,8 +11,6 @@ extension UIAlertController
 {
     func addActionz(_ actions: UIAlertAction...)
     {
-        for action in actions {
-            self.addAction(action)
-        }
+        for action in actions { self.addAction(action) }
     }
 }
