@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CaptionedImage: NSObject
+class CaptionedImage: NSObject, Codable
 {
     var caption: String
     var image: String

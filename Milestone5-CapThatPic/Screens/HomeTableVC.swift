@@ -14,7 +14,6 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        print("heyz")
         setUpNavigation()
     }
 
@@ -28,9 +27,11 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     @objc func addNewCaptionedImage()
     {
         let picker          = UIImagePickerController()
-        let ac0             = UIAlertController(title: Titles.sourcePrompt, message: Messages.sourcePrompt , preferredStyle: .alert )
+        let ac0             = UIAlertController(title: Titles.sourcePrompt,
+                                                message: Messages.sourcePrompt ,
+                                                preferredStyle: .alert )
         
-        let cameraAction    = UIAlertAction(title: Titles.cameraBtn, style: .default) { [weak self] _ in
+        let cameraAction    = UIAlertAction(title: "Camera", style: .default) { [weak self] _ in
             guard UIImagePickerController.isSourceTypeAvailable(.camera)
             else { print(Messages.noCamera); return }
             picker.sourceType       = .camera
@@ -38,7 +39,8 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
             picker.delegate         = self
             self?.present(picker, animated: true)
         }
-        let libraryAction   = UIAlertAction(title: Titles.libraryBtn, style: .default) { [weak self] _ in
+        
+        let libraryAction   = UIAlertAction(title: "Library", style: .default) { [weak self] _ in
             picker.sourceType       = .photoLibrary
             picker.allowsEditing    = true
             picker.delegate         = self
@@ -46,7 +48,9 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         }
         
         ac0.addActionz(cameraAction, libraryAction)
+        present(ac0, animated: true)
     }
+    
     //-------------------------------------//
     // MARK: TABLEVIEW DELEGATE & DATASOURCE METHODS
     

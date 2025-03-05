@@ -9,6 +9,6 @@ import UIKit
 
 class CaptionedImageCell: UITableViewCell
 {
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var imageViewz: UIImageView!
     @IBOutlet var caption: UILabel!
 }
