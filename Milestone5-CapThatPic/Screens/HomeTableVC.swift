@@ -51,6 +51,40 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         present(ac0, animated: true)
     }
     
+    
+    func displayCellOptionsAC(forImage img: CaptionedImage, atIndex index: IndexPath) {
+        let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
+        
+        let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
+            self?.displayCaptionerAC(for: img)
+        }
+        
+        let deleteAction    = UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
+            self?.photoArray.remove(at: index.item)
+            self?.tableView.reloadData()
+            PersistenceManager.save(self?.photoArray ?? [CaptionedImage]())
+        }
+        
+        ac.addActionz(editAction, deleteAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayCaptionerAC(for imageToCaption: CaptionedImage)
+    {
+        let ac             = UIAlertController(title: Titles.createACaption, message: Messages.createACaption, preferredStyle: .alert)
+        ac.addTextField()
+        ac.textFields?[0].placeholder = "Enter your caption"
+        ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+            guard let newCaption    = ac.textFields?[0].text else { return }
+            imageToCaption.caption  = newCaption
+            self?.tableView.reloadData()
+        })
+        
+        present(ac, animated: true)
+    }
+        
+    
     //-------------------------------------//
     // MARK: TABLEVIEW DELEGATE & DATASOURCE METHODS
     
@@ -77,34 +111,30 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        print("row selected")
+        let imageToCap    = photoArray[indexPath.row]
+        displayCellOptionsAC(forImage: imageToCap, atIndex: indexPath)
     }
     
     //-------------------------------------//
     // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
+        guard let image     = info[.editedImage] as? UIImage else { return }
         
-        let imageName   = UUID().uuidString
-        let imagePath   = getDocumentsDirectory().appendingPathComponent(imageName)
+        let imageName       = UUID().uuidString
+        let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
+        if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
         
-        if let jpegData = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
-        let ac0         = UIAlertController(title: Titles.createACaption, message: Messages.createACaption, preferredStyle: .alert)
-        ac0.addTextField()
-        ac0.textFields?[0].placeholder = "enter a caption"
-        
-        let pic         = CaptionedImage(caption: "", image: imageName)
-        photoArray.append(pic)
-        
-        tableView.reloadData()
+        let imageToCap      = CaptionedImage(caption: "no cap", image: imageName)
+        photoArray.append(imageToCap)
         dismiss(animated: true)
     }
     
     
     func getDocumentsDirectory() -> URL
     {
-        let paths       = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return  paths[0]
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }

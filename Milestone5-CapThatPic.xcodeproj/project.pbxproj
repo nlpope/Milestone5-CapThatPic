@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		407D389F2D78D9B900DAF120 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D389E2D78D9B900DAF120 /* PersistenceManager.swift */; };
 		40C5BADD2D6E58F800E7AA91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD22D6E58F800E7AA91 /* Assets.xcassets */; };
 		40C5BADF2D6E58F800E7AA91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD52D6E58F800E7AA91 /* LaunchScreen.storyboard */; };
 		40C5BAE02D6E58F800E7AA91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40C5BAD72D6E58F800E7AA91 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		407D389E2D78D9B900DAF120 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		40C5BA9A2D6E588100E7AA91 /* Milestone5-CapThatPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Milestone5-CapThatPic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C5BAB32D6E588900E7AA91 /* Milestone5-CapThatPicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Milestone5-CapThatPicTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C5BABD2D6E588900E7AA91 /* Milestone5-CapThatPicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Milestone5-CapThatPicUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		407D389D2D78D93000DAF120 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				407D389E2D78D9B900DAF120 /* PersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		40C5BA912D6E588100E7AA91 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +129,7 @@
 		40C5BADB2D6E58F800E7AA91 /* Milestone5-CapThatPic */ = {
 			isa = PBXGroup;
 			children = (
+				407D389D2D78D93000DAF120 /* Managers */,
 				40FEBC2D2D77529200A91B9B /* Extensions */,
 				40FEBC272D774D6800A91B9B /* Utilities */,
 				40C5BAE92D6E5E0900E7AA91 /* Models */,
@@ -329,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C5BAE82D6E5A5A00E7AA91 /* DetailVC.swift in Sources */,
+				407D389F2D78D9B900DAF120 /* PersistenceManager.swift in Sources */,
 				40FEBC292D774D9100A91B9B /* Constants+Utils.swift in Sources */,
 				40C5BAE12D6E58F800E7AA91 /* AppDelegate.swift in Sources */,
 				40FEBC2C2D77528D00A91B9B /* UIAlertController+Ext.swift in Sources */,
