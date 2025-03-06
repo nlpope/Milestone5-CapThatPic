@@ -14,7 +14,7 @@ enum PersistenceManager
     //-------------------------------------//
     // MARK: SAVE & LOAD
     
-    func save(_ photoArray: [CaptionedImage])
+    static func save(_ photoArray: [CaptionedImage])
     {
         let jsonEncoder     = JSONEncoder()
         if let encodedArray = try? jsonEncoder.encode(photoArray)
@@ -26,7 +26,7 @@ enum PersistenceManager
     }
     
     
-    func load(_ photoArray: [CaptionedImage]) -> [CaptionedImage]
+    static func load(forArray photoArray: [CaptionedImage] = [CaptionedImage]()) -> [CaptionedImage]
     {
         var arrayToReturn   = photoArray
         let defaults        = UserDefaults.standard

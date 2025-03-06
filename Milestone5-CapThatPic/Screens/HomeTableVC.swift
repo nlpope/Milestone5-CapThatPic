@@ -15,6 +15,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     {
         super.viewDidLoad()
         setUpNavigation()
+        photoArray = PersistenceManager.load(forArray: photoArray)
     }
 
 
@@ -52,7 +53,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
     
     
-    func displayCellOptionsAC(forImage img: CaptionedImage, atIndex index: IndexPath) {
+    func displayEditOrDeleteAC(forImage img: CaptionedImage, atIndex index: IndexPath) {
         let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
         
         let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
@@ -60,9 +61,10 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         }
         
         let deleteAction    = UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
-            self?.photoArray.remove(at: index.item)
-            self?.tableView.reloadData()
-            PersistenceManager.save(self?.photoArray ?? [CaptionedImage]())
+            guard let self = self else { return }
+            self.photoArray.remove(at: index.item)
+            self.tableView.reloadData()
+            PersistenceManager.save(self.photoArray)
         }
         
         ac.addActionz(editAction, deleteAction)
@@ -72,13 +74,17 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     
     func displayCaptionerAC(for imageToCaption: CaptionedImage)
     {
-        let ac             = UIAlertController(title: Titles.createACaption, message: Messages.createACaption, preferredStyle: .alert)
+        let ac             = UIAlertController(title: Titles.createACaption,
+                                               message: Messages.createACaption,
+                                               preferredStyle: .alert)
         ac.addTextField()
         ac.textFields?[0].placeholder = "Enter your caption"
         ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+            guard let self = self else { return }
             guard let newCaption    = ac.textFields?[0].text else { return }
             imageToCaption.caption  = newCaption
-            self?.tableView.reloadData()
+            self.tableView.reloadData()
+            PersistenceManager.save(self.photoArray)
         })
         
         present(ac, animated: true)
@@ -112,7 +118,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let imageToCap    = photoArray[indexPath.row]
-        displayCellOptionsAC(forImage: imageToCap, atIndex: indexPath)
+        displayEditOrDeleteAC(forImage: imageToCap, atIndex: indexPath)
     }
     
     //-------------------------------------//
