@@ -14,14 +14,24 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        setUpNavigation()
-        photoArray = PersistenceManager.load(forArray: photoArray)
+        configureNavigation()
+        configureTableView()
+        loadSavedPhotos()
     }
 
 
-    func setUpNavigation()
+    func configureNavigation()
     {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCaptionedImage))
+    }
+    
+    
+    func configureTableView() { self.clearsSelectionOnViewWillAppear = true }
+    
+    
+    func loadSavedPhotos()
+    {
+        photoArray = PersistenceManager.load(forArray: photoArray)
     }
     
     
@@ -102,7 +112,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
         if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
         
-        let imageToCap      = CaptionedImage(caption: "", imageName: imageName)
+        let imageToCap      = CaptionedImage(caption: "cap's shieldz", imageName: imageName)
         photoArray.append(imageToCap)
         
         tableView.reloadData()
@@ -147,9 +157,11 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let photo   = photoArray[indexPath.row]
+        print(photo.imageName!)
+        print(photo.caption!)
+        
         if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
-            vc.selectedPhoto        = photo.imageName
-//            vc.captionLabel.text    = photo.caption ?? "no caption"
+            vc.selectedPhoto        = photo.imageName!
             
             navigationController?.pushViewController(vc, animated: true)
         }

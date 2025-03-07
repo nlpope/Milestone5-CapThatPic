@@ -14,8 +14,8 @@ class DetailVC: UIViewController
      instantiateVC (unlike a programmatic approach, doesn't acct for the initializer
      so guessing I'll just need to use a dot operator to access these values
      */
+    
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var captionLabel: UILabel!
     var selectedPhoto: String?
     
     override func viewDidLoad()
@@ -29,13 +29,12 @@ class DetailVC: UIViewController
     private func setUpNavigation()
     {
         navigationItem.largeTitleDisplayMode    = .never
-        title                                   = selectedPhoto
     }
     
     
     private func loadPhoto()
     {
-        if let photoToLoad = selectedPhoto { imageView.image = UIImage(named: photoToLoad) }
+        if let photoToLoad = selectedPhoto { print("photo loaded"); imageView.image = UIImage(named: photoToLoad) }
         assert(selectedPhoto != nil, "selectedPhoto has no value")
     }
 }
