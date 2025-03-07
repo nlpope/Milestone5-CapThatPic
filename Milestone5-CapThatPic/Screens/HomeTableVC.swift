@@ -92,6 +92,32 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         
     
     //-------------------------------------//
+    // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
+        guard let image     = info[.editedImage] as? UIImage else { return }
+        
+        let imageName       = UUID().uuidString
+        let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
+        if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
+        
+        let imageToCap      = CaptionedImage(caption: "", imageName: imageName)
+        photoArray.append(imageToCap)
+        
+        tableView.reloadData()
+        dismiss(animated: true)
+    }
+    
+    
+    func getDocumentsDirectory() -> URL
+    {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    
+    //-------------------------------------//
     // MARK: TABLEVIEW DELEGATE & DATASOURCE METHODS
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -108,8 +134,11 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let photo               = photoArray[indexPath.row]
         cell.caption.text       = photo.caption
         
-        let path                = getDocumentsDirectory().appendingPathComponent(photo.image)
+        let path                = getDocumentsDirectory().appendingPathComponent(photo.imageName)
         cell.imageView?.image   = UIImage(contentsOfFile: path.path)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        cell.addGestureRecognizer(longPressRecognizer)
         
         return cell
     }
@@ -119,36 +148,20 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     {
         let photo   = photoArray[indexPath.row]
         if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
+            vc.selectedPhoto        = photo.imageName
+//            vc.captionLabel.text    = photo.caption ?? "no caption"
             
+            navigationController?.pushViewController(vc, animated: true)
         }
-        
+    }
+    
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer)
+    {
+        print("longpressed")
 //        let imageToCap    = photoArray[indexPath.row]
 //        displayEditOrDeleteAC(forImage: imageToCap, atIndex: indexPath)
-        
-    }
-    
-    #warning("trigger a long press to activeate reveal edit/delete func then leave the detail vc for the tap")
-    
-    //-------------------------------------//
-    // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
-    {
-        guard let image     = info[.editedImage] as? UIImage else { return }
-        
-        let imageName       = UUID().uuidString
-        let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
-        if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
-        
-        let imageToCap      = CaptionedImage(caption: "no cap", image: imageName)
-        photoArray.append(imageToCap)
-        dismiss(animated: true)
-    }
-    
-    
-    func getDocumentsDirectory() -> URL
-    {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
+
+#warning("start adding print statements to track image status at all points")
