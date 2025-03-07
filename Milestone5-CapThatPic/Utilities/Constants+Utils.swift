@@ -25,3 +25,8 @@ enum Titles
     static let sourcePrompt     = "Please Choose Source Type"
     static let createACaption   = "Create A Caption"
 }
+
+enum Identifiers
+{
+    static let detailz          = "Detailz"
+}

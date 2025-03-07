@@ -117,9 +117,17 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let imageToCap    = photoArray[indexPath.row]
-        displayEditOrDeleteAC(forImage: imageToCap, atIndex: indexPath)
+        let photo   = photoArray[indexPath.row]
+        if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
+            
+        }
+        
+//        let imageToCap    = photoArray[indexPath.row]
+//        displayEditOrDeleteAC(forImage: imageToCap, atIndex: indexPath)
+        
     }
+    
+    #warning("trigger a long press to activeate reveal edit/delete func then leave the detail vc for the tap")
     
     //-------------------------------------//
     // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS

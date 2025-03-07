@@ -7,11 +7,16 @@
 
 import UIKit
 
-class DetailVC:     UITableViewController,
-                    UIImagePickerControllerDelegate,
-                    UINavigationControllerDelegate
+class DetailVC: UIViewController
 {
-    @IBOutlet var imageView: UIImageView!
+    /**
+     since I'm using IB, I won't bother w the initializer
+     instantiateVC (unlike a programmatic approach, doesn't acct for the initializer
+     so guessing I'll just need to use a dot operator to access these values
+     */
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
+    
     var selectedImage: CaptionedImage?
     
     init(withSelectedImage selectedImage: CaptionedImage? = nil)
