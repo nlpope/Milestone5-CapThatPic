@@ -63,7 +63,8 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
     
     
-    func displayEditOrDeleteAC(forImage img: CaptionedImage, atIndex index: IndexPath) {
+    func displayEditOrDeleteAC(forImage img: CaptionedImage, atIndex index: IndexPath)
+    {
         let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
         
         let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
@@ -112,10 +113,11 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
         if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
         
-        let imageToCap      = CaptionedImage(caption: "cap's shieldz", imageName: imageName)
+        let imageToCap      = CaptionedImage(caption: "cap's shieldz, change to empty string", imageName: imageName)
         photoArray.append(imageToCap)
         
         tableView.reloadData()
+        PersistenceManager.save(photoArray)
         dismiss(animated: true)
     }
     
@@ -176,4 +178,3 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
 }
 
-#warning("start adding print statements to track image status at all points")
