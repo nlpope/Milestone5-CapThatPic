@@ -113,19 +113,12 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
         if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
         
-        let imageToCap      = CaptionedImage(caption: "cap's shieldz, change to empty string", imageName: imageName)
+        let imageToCap      = CaptionedImage(imageName: imageName, caption: "cap's shieldz, change to empty string on final iterationzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
         photoArray.append(imageToCap)
         
         tableView.reloadData()
         PersistenceManager.save(photoArray)
         dismiss(animated: true)
-    }
-    
-    
-    func getDocumentsDirectory() -> URL
-    {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
     
     
@@ -161,8 +154,6 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let photo   = photoArray[indexPath.row]
-        print(photo.imageName!)
-        print(photo.caption!)
         
         if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
             vc.selectedPhoto        = photo.imageName

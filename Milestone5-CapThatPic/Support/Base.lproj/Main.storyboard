@@ -99,14 +99,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="MaR-8g-Ram" secondAttribute="bottom" constant="-48" id="2WU-iU-Em0"/>
-                            <constraint firstItem="MaR-8g-Ram" firstAttribute="trailing" secondItem="XU6-6f-RKS" secondAttribute="trailing" id="KP0-OU-ADc"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="centerX" secondItem="m7M-5z-252" secondAttribute="centerX" id="Yzu-q7-Znz"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="leading" secondItem="XU6-6f-RKS" secondAttribute="leading" id="ch5-Dt-ddq"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="top" secondItem="m7M-5z-252" secondAttribute="topMargin" constant="-59" id="eRZ-j0-idX"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="MaR-8g-Ram" id="gRE-UF-oD4"/>
+                        <outlet property="imageViewzz" destination="MaR-8g-Ram" id="gRE-UF-oD4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9W-ig-etR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

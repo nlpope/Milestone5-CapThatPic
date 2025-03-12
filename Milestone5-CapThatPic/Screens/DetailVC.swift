@@ -15,7 +15,7 @@ class DetailVC: UIViewController
      so guessing I'll just need to use a dot operator to access these values
      */
     
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var imageViewzz: UIImageView!
     var selectedPhoto: String?
     
     override func viewDidLoad()
@@ -34,7 +34,12 @@ class DetailVC: UIViewController
     
     private func loadPhoto()
     {
-        if let photoToLoad = selectedPhoto { imageView.image = UIImage(named: photoToLoad) }
+        /**img not saved to Content folder but written to docDirectory, access that to find UIImage(named...)**/
+        if let photoToLoad = selectedPhoto {
+//            imageViewzz.image = UIImage(named: photoToLoad)
+            let path = getDocumentsDirectory().appendingPathComponent(photoToLoad)
+            imageViewzz.image = UIImage(contentsOfFile: path.path)
+        }
         assert(selectedPhoto != nil, "selectedPhoto has no value")
     }
 }

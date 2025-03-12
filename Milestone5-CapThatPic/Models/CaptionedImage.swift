@@ -9,12 +9,12 @@ import UIKit
 
 class CaptionedImage: NSObject, Codable
 {
-    var caption: String!
-    var imageName: String!
+    var caption: String
+    var imageName: String
     
-    init(caption: String, imageName: String)
+    init(imageName: String, caption: String)
     {
-        self.caption    = caption
         self.imageName  = imageName
+        self.caption    = caption
     }
 }
