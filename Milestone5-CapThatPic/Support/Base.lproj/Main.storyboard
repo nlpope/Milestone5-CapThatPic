@@ -94,17 +94,28 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MaR-8g-Ram">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="866"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLp-BJ-RpY">
+                                <rect key="frame" x="16" y="704" width="361" height="114"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XU6-6f-RKS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="MaR-8g-Ram" secondAttribute="bottom" constant="-48" id="2WU-iU-Em0"/>
+                            <constraint firstItem="FLp-BJ-RpY" firstAttribute="bottom" secondItem="XU6-6f-RKS" secondAttribute="bottom" id="3r1-Ut-LpF"/>
+                            <constraint firstItem="XU6-6f-RKS" firstAttribute="trailing" secondItem="FLp-BJ-RpY" secondAttribute="trailing" constant="16" id="N3a-hM-Vye"/>
+                            <constraint firstItem="FLp-BJ-RpY" firstAttribute="leading" secondItem="XU6-6f-RKS" secondAttribute="leading" constant="16" id="W1X-OV-3Ld"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="centerX" secondItem="m7M-5z-252" secondAttribute="centerX" id="Yzu-q7-Znz"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="leading" secondItem="XU6-6f-RKS" secondAttribute="leading" id="ch5-Dt-ddq"/>
                             <constraint firstItem="MaR-8g-Ram" firstAttribute="top" secondItem="m7M-5z-252" secondAttribute="topMargin" constant="-59" id="eRZ-j0-idX"/>
+                            <constraint firstItem="FLp-BJ-RpY" firstAttribute="top" secondItem="XU6-6f-RKS" secondAttribute="top" constant="645" id="mO3-uw-tQr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageCaption" destination="FLp-BJ-RpY" id="vb0-fb-pqp"/>
                         <outlet property="imageViewzz" destination="MaR-8g-Ram" id="gRE-UF-oD4"/>
                     </connections>
                 </viewController>

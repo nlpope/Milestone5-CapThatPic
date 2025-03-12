@@ -22,7 +22,9 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
 
     func configureNavigation()
     {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCaptionedImage))
+        let additionItem    = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCaptionedImage))
+        let editItem        = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editCaptionedImages))
+        navigationItem.leftBarButtonItems = [additionItem, editItem]
     }
     
     
@@ -60,6 +62,12 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         
         ac0.addActionz(cameraAction, libraryAction)
         present(ac0, animated: true)
+    }
+    
+    
+    @objc func editCaptionedImages()
+    {
+        
     }
     
     
@@ -113,7 +121,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let imagePath       = getDocumentsDirectory().appendingPathComponent(imageName)
         if let jpegData     = image.jpegData(compressionQuality: 0.8) { try? jpegData.write(to: imagePath) }
         
-        let imageToCap      = CaptionedImage(imageName: imageName, caption: "cap's shieldz, change to empty string on final iterationzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
+        let imageToCap      = CaptionedImage(imageName: imageName, caption: "")
         photoArray.append(imageToCap)
         
         tableView.reloadData()
@@ -142,10 +150,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         let path                = getDocumentsDirectory().appendingPathComponent(photo.imageName)
         
         /**I wasn't calling ImageViewz but ImageView (no z), hence the layout not responding**/
-        cell.imageViewz?.image   = UIImage(contentsOfFile: path.path)
-        
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        cell.addGestureRecognizer(longPressRecognizer)
+        cell.imageViewz?.image  = UIImage(contentsOfFile: path.path)
         
         return cell
     }
@@ -157,17 +162,10 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         
         if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
             vc.selectedPhoto        = photo.imageName
+            vc.caption              = photo.caption
             
             navigationController?.pushViewController(vc, animated: true)
         }
-    }
-    
-    
-    @objc func longPressed(sender: UILongPressGestureRecognizer)
-    {
-        print("longpressed")
-//        let imageToCap    = photoArray[indexPath.row]
-//        displayEditOrDeleteAC(forImage: imageToCap, atIndex: indexPath)
     }
 }
 

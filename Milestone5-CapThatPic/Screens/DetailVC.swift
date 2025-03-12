@@ -16,7 +16,9 @@ class DetailVC: UIViewController
      */
     
     @IBOutlet var imageViewzz: UIImageView!
+    @IBOutlet var imageCaption: UILabel!
     var selectedPhoto: String?
+    var caption: String?
     
     override func viewDidLoad()
     {
@@ -36,9 +38,9 @@ class DetailVC: UIViewController
     {
         /**img not saved to Content folder but written to docDirectory, access that to find UIImage(named...)**/
         if let photoToLoad = selectedPhoto {
-//            imageViewzz.image = UIImage(named: photoToLoad)
-            let path = getDocumentsDirectory().appendingPathComponent(photoToLoad)
-            imageViewzz.image = UIImage(contentsOfFile: path.path)
+            let path            = getDocumentsDirectory().appendingPathComponent(photoToLoad)
+            imageViewzz.image   = UIImage(contentsOfFile: path.path)
+            imageCaption.text   = caption
         }
         assert(selectedPhoto != nil, "selectedPhoto has no value")
     }
