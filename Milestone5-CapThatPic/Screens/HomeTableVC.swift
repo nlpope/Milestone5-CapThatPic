@@ -165,7 +165,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         print(photo.caption!)
         
         if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
-            vc.selectedPhoto        = photo.imageName!
+            vc.selectedPhoto        = photo.imageName
             
             navigationController?.pushViewController(vc, animated: true)
         }

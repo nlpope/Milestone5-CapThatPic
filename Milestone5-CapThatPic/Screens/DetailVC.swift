@@ -34,7 +34,7 @@ class DetailVC: UIViewController
     
     private func loadPhoto()
     {
-        if let photoToLoad = selectedPhoto { print("photo loaded"); imageView.image = UIImage(named: photoToLoad) }
+        if let photoToLoad = selectedPhoto { imageView.image = UIImage(named: photoToLoad) }
         assert(selectedPhoto != nil, "selectedPhoto has no value")
     }
 }
