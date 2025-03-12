@@ -9,7 +9,8 @@ import UIKit
 
 class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate
 {
-    var photoArray = [CaptionedImage]()
+    var photoArray          = [CaptionedImage]()
+    var editModeOn: Bool    = true
     
     override func viewDidLoad()
     {
@@ -23,7 +24,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     func configureNavigation()
     {
         let additionItem    = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCaptionedImage))
-        let editItem        = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editCaptionedImages))
+        let editItem        = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode))
         navigationItem.leftBarButtonItems = [additionItem, editItem]
     }
     
@@ -36,6 +37,64 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         photoArray = PersistenceManager.load(forArray: photoArray)
     }
     
+    
+
+    
+    
+    func displayEditOrDeleteAC(forIndex indexPath: IndexPath)
+    {
+        let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
+        
+        let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
+            self?.displayCaptionerAC(forIndex: indexPath)
+        }
+        
+        let deleteAction    = UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.photoArray.remove(at: indexPath.row)
+            self.tableView.reloadData()
+            PersistenceManager.save(self.photoArray)
+        }
+        
+        ac.addActionz(editAction, deleteAction)
+        present(ac, animated: true)
+    }
+    
+    
+    func displayCaptionerAC(forIndex indexPath: IndexPath)
+    {
+        let imageToCaption              = photoArray[indexPath.row]
+        let ac                          = UIAlertController(title: Titles.createACaption,
+                                               message: Messages.createACaption,
+                                               preferredStyle: .alert)
+        ac.addTextField()
+        ac.textFields?[0].placeholder   = "Enter your caption"
+        ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
+            guard let self          = self else { return }
+            guard let newCaption    = ac.textFields?[0].text else { return }
+            imageToCaption.caption  = newCaption
+            self.tableView.reloadData()
+            PersistenceManager.save(self.photoArray)
+        })
+        
+        present(ac, animated: true)
+    }
+    
+    
+    func pushDetailVC(forIndexPath indexPath: IndexPath)
+    {
+        let photo   = photoArray[indexPath.row]
+        
+        if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
+            vc.selectedPhoto        = photo.imageName
+            vc.caption              = photo.caption
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    //-------------------------------------//
+    // MARK: OBJ-C SELECTOR FUNCS
     
     @objc func addNewCaptionedImage()
     {
@@ -65,50 +124,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
     
     
-    @objc func editCaptionedImages()
-    {
-        
-    }
-    
-    
-    func displayEditOrDeleteAC(forImage img: CaptionedImage, atIndex index: IndexPath)
-    {
-        let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
-        
-        let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
-            self?.displayCaptionerAC(for: img)
-        }
-        
-        let deleteAction    = UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.photoArray.remove(at: index.item)
-            self.tableView.reloadData()
-            PersistenceManager.save(self.photoArray)
-        }
-        
-        ac.addActionz(editAction, deleteAction)
-        present(ac, animated: true)
-    }
-    
-    
-    func displayCaptionerAC(for imageToCaption: CaptionedImage)
-    {
-        let ac             = UIAlertController(title: Titles.createACaption,
-                                               message: Messages.createACaption,
-                                               preferredStyle: .alert)
-        ac.addTextField()
-        ac.textFields?[0].placeholder = "Enter your caption"
-        ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            guard let newCaption    = ac.textFields?[0].text else { return }
-            imageToCaption.caption  = newCaption
-            self.tableView.reloadData()
-            PersistenceManager.save(self.photoArray)
-        })
-        
-        present(ac, animated: true)
-    }
-        
+    @objc func toggleEditMode() { editModeOn.toggle() }
     
     //-------------------------------------//
     // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS
@@ -128,7 +144,6 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         PersistenceManager.save(photoArray)
         dismiss(animated: true)
     }
-    
     
     //-------------------------------------//
     // MARK: TABLEVIEW DELEGATE & DATASOURCE METHODS
@@ -158,14 +173,8 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let photo   = photoArray[indexPath.row]
+        editModeOn ? displayEditOrDeleteAC(forIndex: indexPath) : pushDetailVC(forIndexPath: indexPath)
         
-        if let vc   = storyboard?.instantiateViewController(withIdentifier: Identifiers.detailz) as? DetailVC {
-            vc.selectedPhoto        = photo.imageName
-            vc.caption              = photo.caption
-            
-            navigationController?.pushViewController(vc, animated: true)
-        }
     }
 }
 
