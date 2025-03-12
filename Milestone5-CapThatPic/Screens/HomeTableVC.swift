@@ -147,7 +147,9 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         cell.caption.text       = photo.caption
         
         let path                = getDocumentsDirectory().appendingPathComponent(photo.imageName)
-        cell.imageView?.image   = UIImage(contentsOfFile: path.path)
+        
+        /**I wasn't calling ImageViewz but ImageView (no z), hence the layout not responding**/
+        cell.imageViewz?.image   = UIImage(contentsOfFile: path.path)
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
         cell.addGestureRecognizer(longPressRecognizer)
