@@ -36,7 +36,10 @@ class DetailVC: UIViewController
     
     private func loadPhoto()
     {
-        /**img not saved to Content folder but written to docDirectory, access that to find UIImage(named...)**/
+        /**
+         was having issues populating DetailVC w an image (black screen)
+         b/c img not saved to Content folder but written to docDirectory, access that to find UIImage(named...)
+         **/
         if let photoToLoad = selectedPhoto {
             let path            = getDocumentsDirectory().appendingPathComponent(photoToLoad)
             imageViewzz.image   = UIImage(contentsOfFile: path.path)

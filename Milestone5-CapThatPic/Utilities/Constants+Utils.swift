@@ -5,7 +5,7 @@
 //  Created by Noah Pope on 3/4/25.
 //
 
-import Foundation
+import UIKit
 
 enum Error
 {
@@ -29,4 +29,9 @@ enum Titles
 enum Identifiers
 {
     static let detailz          = "Detailz"
+}
+
+enum SFSymbols
+{
+    static let edit             = UIImage(systemName: "pencil")
 }

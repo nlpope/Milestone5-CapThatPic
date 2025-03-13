@@ -10,7 +10,7 @@ import UIKit
 class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate
 {
     var photoArray          = [CaptionedImage]()
-    var editModeOn: Bool    = true
+    var editModeOn: Bool    = false
     
     override func viewDidLoad()
     {
@@ -24,7 +24,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     func configureNavigation()
     {
         let additionItem    = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewCaptionedImage))
-        let editItem        = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditMode))
+        let editItem        = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(toggleEditModeAndReload))
         navigationItem.leftBarButtonItems = [additionItem, editItem]
     }
     
@@ -38,25 +38,25 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
     
     
-
-    
-    
     func displayEditOrDeleteAC(forIndex indexPath: IndexPath)
     {
-        let ac  = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
+        let ac              = UIAlertController(title: "Please choose",
+                                    message: Messages.deleteOrEdit,
+                                    preferredStyle: .alert)
         
         let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
             self?.displayCaptionerAC(forIndex: indexPath)
         }
         
         let deleteAction    = UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.photoArray.remove(at: indexPath.row)
-            self.tableView.reloadData()
-            PersistenceManager.save(self.photoArray)
+            self?.photoArray.remove(at: indexPath.row)
+            PersistenceManager.save(self?.photoArray ?? [CaptionedImage]())
+            self?.toggleEditModeAndReload()
         }
         
-        ac.addActionz(editAction, deleteAction)
+        let cancelAction    = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        ac.addActionz(editAction, deleteAction, cancelAction)
         present(ac, animated: true)
     }
     
@@ -70,11 +70,14 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         ac.addTextField()
         ac.textFields?[0].placeholder   = "Enter your caption"
         ac.addAction(UIAlertAction(title: "Done", style: .default) { [weak self] _ in
-            guard let self          = self else { return }
             guard let newCaption    = ac.textFields?[0].text else { return }
             imageToCaption.caption  = newCaption
-            self.tableView.reloadData()
-            PersistenceManager.save(self.photoArray)
+            PersistenceManager.save(self?.photoArray ?? [CaptionedImage]())
+            self?.toggleEditModeAndReload()
+        })
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+            self?.toggleEditModeAndReload()
         })
         
         present(ac, animated: true)
@@ -124,7 +127,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     }
     
     
-    @objc func toggleEditMode() { editModeOn.toggle() }
+    @objc func toggleEditModeAndReload() { editModeOn.toggle(); tableView.reloadData() }
     
     //-------------------------------------//
     // MARK: IMAGE PICKER CONTROLLER DELEGATE METHODS
@@ -159,12 +162,21 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
         guard let cell          = tableView.dequeueReusableCell(withIdentifier: "CapCell") as? CaptionedImageCell
         else { fatalError(Error.dequeueCellFailure) }
         
+        if editModeOn {
+            var editAccessoryView: UIImageView
+            editAccessoryView       = UIImageView(frame: CGRectMake(20, 20, 22, 22))
+            editAccessoryView.image = SFSymbols.edit
+            cell.accessoryView      =  editAccessoryView
+        } else {
+            cell.accessoryView  = nil
+            cell.accessoryType  = .disclosureIndicator
+        }
+        
         let photo               = photoArray[indexPath.row]
         cell.caption.text       = photo.caption
         
-        let path                = getDocumentsDirectory().appendingPathComponent(photo.imageName)
-        
         /**I wasn't calling ImageViewz but ImageView (no z), hence the layout not responding**/
+        let path                = getDocumentsDirectory().appendingPathComponent(photo.imageName)
         cell.imageViewz?.image  = UIImage(contentsOfFile: path.path)
         
         return cell
@@ -174,7 +186,6 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         editModeOn ? displayEditOrDeleteAC(forIndex: indexPath) : pushDetailVC(forIndexPath: indexPath)
-        
     }
 }
 
