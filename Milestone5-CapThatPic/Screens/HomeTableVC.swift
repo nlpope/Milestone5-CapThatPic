@@ -40,9 +40,7 @@ class HomeTableVC: UITableViewController, UIImagePickerControllerDelegate & UINa
     
     func displayEditOrDeleteAC(forIndex indexPath: IndexPath)
     {
-        let ac              = UIAlertController(title: "Please choose",
-                                    message: Messages.deleteOrEdit,
-                                    preferredStyle: .alert)
+        let ac              = UIAlertController(title: "Please choose", message: Messages.deleteOrEdit, preferredStyle: .alert)
         
         let editAction      = UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
             self?.displayCaptionerAC(forIndex: indexPath)
